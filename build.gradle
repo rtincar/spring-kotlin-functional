@@ -27,10 +27,11 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'kotlin'
 apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'kotlin-spring'
-
+apply plugin: 'application'
+//apply plugin: 'kotlin-spring'
 
 sourceCompatibility = 1.8
+mainClassName = "functional.ApplicationKt"
 
 repositories {
     mavenCentral()
@@ -46,14 +47,14 @@ repositories {
     }
 }
 
-application {
-    mainClassName = "functional.ApplicationKt"
-}
+
+
+
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-
+    compile("com.samskivert:jmustache:1.13")
 
     compile("org.springframework:spring-webflux:5.0.1.RELEASE")
     compile("org.springframework:spring-context:5.0.1.RELEASE") {
@@ -70,7 +71,7 @@ dependencies {
     testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4'
     testCompile "org.spockframework:spock-core:$spock_version"
     testCompile 'io.projectreactor:reactor-test:3.1.0.RELEASE'
-
+    testCompile("org.springframework:spring-test:5.0.1.RELEASE")
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0")
 }
